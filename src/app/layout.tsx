@@ -26,7 +26,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Bloquea scroll restoration ANTES de que el browser pueda restaurar posición */}
         <script dangerouslySetInnerHTML={{ __html: `
           if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
-          window.scrollTo(0, 0);
+          document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.style.scrollBehavior = 'auto';
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          });
+          window.addEventListener('load', function() {
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          });
         `}} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

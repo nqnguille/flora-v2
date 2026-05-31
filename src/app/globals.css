@@ -6,7 +6,6 @@
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   body {
     background-color: #F7F6EB;
     color: #2D4239;
