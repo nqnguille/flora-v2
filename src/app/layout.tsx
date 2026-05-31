@@ -3,7 +3,6 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
-import { ScrollReset } from "@/components/ui/ScrollReset";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://flora.ar"),
@@ -24,6 +23,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-AR">
       <head>
+        {/* Bloquea scroll restoration ANTES de que el browser pueda restaurar posición */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
+          window.scrollTo(0, 0);
+        `}} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -34,7 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         })}} />
       </head>
       <body>
-        <ScrollReset />
         <Navbar />
         <main>{children}</main>
         <Footer />
