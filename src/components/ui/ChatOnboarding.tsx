@@ -114,7 +114,7 @@ export function ChatOnboarding() {
               transition={{ duration: 0.7, delay: 0.25 }}
               className="space-y-3"
             >
-              {[["hola@flora.ar","Email"],["Neuquén, Argentina","Sede"]].map(([v,l]) => (
+              {[["hola@flora.ar","Email"],["Todo el país","Alcance"]].map(([v,l]) => (
                 <div key={l} className="flex items-center gap-3">
                   <span className="section-tag text-green-dark/30 min-w-[3.5rem]">{l}</span>
                   <span className="font-jakarta text-sm text-green-dark/70">{v}</span>

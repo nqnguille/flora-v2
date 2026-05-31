@@ -26,7 +26,7 @@ export function Footer() {
             <div>
               <p className="section-tag text-green-dark/25 mb-3">Contacto</p>
               <p className="font-jakarta text-xs text-green-dark/45 mb-1">hola@flora.ar</p>
-              <p className="font-jakarta text-xs text-green-dark/45 mb-1">Neuquén, Argentina</p>
+              <p className="font-jakarta text-xs text-green-dark/45 mb-1">Argentina</p>
               <a href="https://instagram.com/flora.cultivamosconciencia" target="_blank" rel="noopener noreferrer"
                 className="font-jakarta text-xs text-green-dark/45 hover:text-green-dark transition-colors">
                 @flora.cultivamosconciencia

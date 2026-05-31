@@ -7,8 +7,8 @@ import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 export const metadata: Metadata = {
   metadataBase: new URL("https://flora.ar"),
   title: { default: "Flora — Cultivamos Conciencia", template: "%s | Flora" },
-  description: "Club de cultivo medicinal en Neuquén. Acceso legal al cannabis medicinal bajo Ley 27.350. Trazabilidad, acompañamiento médico, precio de comunidad.",
-  keywords: ["cannabis medicinal argentina","ley 27350","REPROCANN","club de cultivo","Neuquén"],
+  description: "Club de cultivo medicinal. Acceso legal al cannabis medicinal bajo Ley 27.350. Trazabilidad completa, acompañamiento médico y entrega en todo el país.",
+  keywords: ["cannabis medicinal argentina","ley 27350","REPROCANN","club de cultivo","cannabis terapéutico"],
   openGraph: {
     type: "website", locale: "es_AR", url: "https://flora.ar", siteName: "Flora",
     title: "Flora — Cultivamos Conciencia",

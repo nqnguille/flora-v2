@@ -7,7 +7,7 @@ import { useRef } from "react";
 const steps = [
   { n: "01", title: "Contactanos",           desc: "Completá el chat o escribinos por WhatsApp. Tres preguntas, menos de dos minutos." },
   { n: "02", title: "Evaluación inicial",    desc: "Nuestro equipo médico revisa tu caso, orienta el tratamiento y gestiona el REPROCANN si no lo tenés. Sin cargo." },
-  { n: "03", title: "Recibís tu medicamento",desc: "Andreani a todo el país. Discreto, asegurado, con perfil de cannabinoides del lote en cada entrega." },
+  { n: "03", title: "Te llega donde estés",  desc: "Entrega discreta en cualquier punto del país. Con perfil de cannabinoides del lote y documentación legal en cada paquete." },
 ];
 
 export function HowItWorks() {

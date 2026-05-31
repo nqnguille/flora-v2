@@ -9,7 +9,7 @@ const features = [
   { n: "02", title: "Trazabilidad de lote", desc: "Cada entrega incluye el perfil de cannabinoides y terpenos. Sabés qué recibís antes de recibirlo." },
   { n: "03", title: "Evaluación inicial",   desc: "Un profesional revisa tu caso sin cargo. Acompañamiento real, no un formulario genérico." },
   { n: "04", title: "Genéticas propias",    desc: "Cultivamos variedades seleccionadas por perfil terapéutico. No lo que hay — lo que funciona." },
-  { n: "05", title: "Envío nacional",       desc: "Andreani a todo el país. Discreto, con número de seguimiento y documentación legal incluida." },
+  { n: "05", title: "Llegamos donde estés", desc: "Entrega discreta a cualquier punto del país. Con número de seguimiento y documentación legal en cada paquete." },
   { n: "06", title: "Precio de comunidad",  desc: "USD 9 a 12 por gramo. El precio refleja el costo real del cultivo, no la especulación del mercado informal." },
 ];
 
@@ -39,7 +39,7 @@ export function Features() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="font-jakarta text-sm text-green-dark/50 max-w-xs leading-relaxed md:text-right"
           >
-            Somos una Asociación Civil con sede en Neuquén. Cultivamos cannabis medicinal con el mismo rigor con el que tratan su salud quienes confían en nosotros.
+            Una Asociación Civil inscripta en Argentina. Cultivamos cannabis medicinal con el mismo rigor con el que tratan su salud quienes confían en nosotros.
           </motion.p>
         </div>
 

@@ -8,7 +8,7 @@ const stats = [
   { value: "50+",       label: "Socios activos" },
   { value: "Ley 27350", label: "Marco legal" },
   { value: "REPROCANN", label: "Registro oficial" },
-  { value: "Neuquén",   label: "Asoc. Civil inscripta" },
+  { value: "Nacional",  label: "Entrega en todo el país" },
 ];
 
 export function Trust() {
@@ -63,7 +63,7 @@ export function Trust() {
               La Ley 27.350 habilita a clubes de cultivo a producir cannabis medicinal para sus socios. El REPROCANN del Ministerio de Salud registra a la organización y a cada socio individualmente. Flora opera dentro de ese marco desde el primer día, con toda la documentación disponible para quien la quiera ver.
             </p>
             <div className="space-y-3">
-              {["Ley 27.350","REPROCANN activo","Asociación Civil inscripta","Envío legal por Andreani"].map((item) => (
+              {["Ley 27.350","REPROCANN activo","Asociación Civil inscripta","Entrega en todo el país"].map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <span className="text-green-accent text-lg leading-none">✦</span>
                   <span className="font-jakarta text-white/60 text-sm">{item}</span>

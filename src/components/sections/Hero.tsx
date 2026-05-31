@@ -15,7 +15,7 @@ export function Hero() {
         className="px-6 pt-8"
       >
         <span className="section-tag text-green-dark/40">
-          Club de cultivo medicinal · Neuquén · Ley 27.350
+          Cannabis medicinal · Argentina · Ley 27.350
         </span>
       </motion.div>
 
