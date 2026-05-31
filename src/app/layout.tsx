@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { ScrollReset } from "@/components/ui/ScrollReset";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://flora.ar"),
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         })}} />
       </head>
       <body>
+        <ScrollReset />
         <Navbar />
         <main>{children}</main>
         <Footer />
