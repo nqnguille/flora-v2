@@ -7,7 +7,6 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
     background-color: #F7F6EB;
     color: #2D4239;
@@ -15,7 +14,6 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: "EB Garamond", Georgia, serif;
     line-height: 1.0;
@@ -23,7 +21,8 @@
   }
 }
 
-@layer utilities {
+/* Clases globales que Tailwind no puede generar solo */
+@layer components {
   .font-garamond { font-family: "EB Garamond", Georgia, serif; }
   .font-jakarta  { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
 
@@ -35,9 +34,6 @@
     text-transform: uppercase;
   }
 
-  .text-balance { text-wrap: balance; }
-
-  /* Títulos brutales que sangran */
   .title-brutal {
     font-family: "EB Garamond", Georgia, serif;
     font-size: clamp(4.5rem, 13vw, 11rem);
@@ -62,16 +58,12 @@
     letter-spacing: -0.02em;
   }
 
-  /* Línea divisora fina */
-  .rule { border-top: 1px solid currentColor; opacity: 0.15; }
-  .rule-solid { border-top: 1px solid currentColor; opacity: 0.3; }
-
-  /* Chat bubbles (contact) */
   .chat-bubble-bot {
     background: rgba(45, 66, 57, 0.07);
     border: 1px solid rgba(45, 66, 57, 0.12);
     border-radius: 4px 20px 20px 20px;
   }
+
   .chat-bubble-user {
     background: rgba(113, 206, 106, 0.15);
     border: 1px solid rgba(113, 206, 106, 0.3);
