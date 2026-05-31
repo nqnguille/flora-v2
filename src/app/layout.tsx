@@ -3,25 +3,19 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
-import { GlowBackground } from "@/components/ui/GlowBackground";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://flora.ar"),
   title: { default: "Flora — Cultivamos Conciencia", template: "%s | Flora" },
   description: "Club de cultivo medicinal en Neuquén. Acceso legal al cannabis medicinal bajo Ley 27.350. Trazabilidad, acompañamiento médico, precio de comunidad.",
-  keywords: ["cannabis medicinal argentina","ley 27350","REPROCANN","club de cultivo","Neuquén","cannabis terapéutico"],
+  keywords: ["cannabis medicinal argentina","ley 27350","REPROCANN","club de cultivo","Neuquén"],
   openGraph: {
     type: "website", locale: "es_AR", url: "https://flora.ar", siteName: "Flora",
     title: "Flora — Cultivamos Conciencia",
     description: "Club de cultivo medicinal. Acceso legal bajo Ley 27.350.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Flora" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Flora — Cultivamos Conciencia",
-    description: "Club de cultivo medicinal. Acceso legal bajo Ley 27.350.",
-    images: ["/og-image.jpg"],
-  },
+  twitter: { card: "summary_large_image", title: "Flora — Cultivamos Conciencia", images: ["/og-image.jpg"] },
   robots: { index: true, follow: true },
 };
 
@@ -38,10 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           sameAs: ["https://instagram.com/flora.cultivamosconciencia"],
         })}} />
       </head>
-      <body className="noise">
-        <GlowBackground />
+      <body>
         <Navbar />
-        <main className="relative z-10">{children}</main>
+        <main>{children}</main>
         <Footer />
         <WhatsAppFloat />
       </body>

@@ -1,56 +1,64 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Scale, Microscope, Stethoscope, Leaf, Package, HandHeart } from "lucide-react";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const features = [
-  { icon: Scale,       title: "100% legal",              desc: "Asociación Civil con REPROCANN activo. Cada socio tiene su registro en el Ministerio de Salud." },
-  { icon: Microscope,  title: "Trazabilidad de lote",    desc: "Cada entrega incluye el perfil de cannabinoides. Sabés exactamente qué recibís." },
-  { icon: Stethoscope, title: "Evaluación inicial",      desc: "Un profesional de salud evalúa tu caso sin cargo. Acompañamiento real, no formulario." },
-  { icon: Leaf,        title: "Genéticas seleccionadas", desc: "Cultivamos lo que funciona terapéuticamente. No lo que hay, sino lo que corresponde." },
-  { icon: Package,     title: "Envío a todo el país",    desc: "Andreani, con número de seguimiento. Discreto. Documentado. Sin zona gris." },
-  { icon: HandHeart,   title: "Precio de comunidad",     desc: "USD 9-12/g. Sin especulación. El precio refleja el costo real del cultivo." },
+  { n: "01", title: "Acceso legal",         desc: "Asociación Civil inscripta. Operamos bajo Ley 27.350 con REPROCANN activo. Cada socio tiene su registro oficial." },
+  { n: "02", title: "Trazabilidad de lote", desc: "Cada entrega incluye el perfil de cannabinoides y terpenos. Sabés qué recibís antes de recibirlo." },
+  { n: "03", title: "Evaluación inicial",   desc: "Un profesional revisa tu caso sin cargo. Acompañamiento real, no un formulario genérico." },
+  { n: "04", title: "Genéticas propias",    desc: "Cultivamos variedades seleccionadas por perfil terapéutico. No lo que hay — lo que funciona." },
+  { n: "05", title: "Envío nacional",       desc: "Andreani a todo el país. Discreto, con número de seguimiento y documentación legal incluida." },
+  { n: "06", title: "Precio de comunidad",  desc: "USD 9 a 12 por gramo. El precio refleja el costo real del cultivo, no la especulación del mercado informal." },
 ];
 
 export function Features() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section id="que-es" className="py-28 px-5">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="mb-16"
-        >
-          <span className="section-tag text-flora-accent mb-4 block">Qué es Flora</span>
-          <h2 className="font-garamond font-bold text-white text-5xl sm:text-6xl leading-tight max-w-2xl mb-4">
+    <section id="que-es" className="bg-cream py-24 px-6 md:px-10">
+      <div className="max-w-7xl mx-auto" ref={ref}>
+
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-green-dark/15">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="title-section text-green-dark max-w-lg"
+          >
             Un club de cultivo.
             <br />
-            <em className="text-flora-accent">Nada más. Nada menos.</em>
-          </h2>
-          <p className="font-jakarta text-white/45 text-lg max-w-xl leading-relaxed">
-            Somos una Asociación Civil con sede en Neuquén. Cultivamos cannabis
-            medicinal para nuestros socios con el mismo rigor con el que tratan
-            su salud.
-          </p>
-        </motion.div>
+            <em>Nada más. Nada menos.</em>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="font-jakarta text-sm text-green-dark/50 max-w-xs leading-relaxed md:text-right"
+          >
+            Somos una Asociación Civil con sede en Neuquén. Cultivamos cannabis medicinal con el mismo rigor con el que tratan su salud quienes confían en nosotros.
+          </motion.p>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
           {features.map((f, i) => (
             <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: i * 0.08 }}
-              className="glass rounded-2xl p-6 hover:glass-strong transition-all group cursor-default"
+              key={f.n}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.07 }}
+              className="border-b border-r-0 md:border-r border-green-dark/10 py-8 pr-0 md:pr-10 group"
+              style={{ borderRight: (i + 1) % 3 === 0 ? "none" : undefined }}
             >
-              <div className="w-10 h-10 rounded-xl glass-accent flex items-center justify-center mb-5">
-                <f.icon size={18} className="text-flora-accent" />
-              </div>
-              <h3 className="font-garamond font-semibold text-white text-xl mb-2">{f.title}</h3>
-              <p className="font-jakarta text-white/45 text-sm leading-relaxed">{f.desc}</p>
+              <span className="section-tag text-green-dark/25 block mb-5">{f.n}</span>
+              <h3 className="font-garamond font-semibold text-green-dark text-2xl mb-3 group-hover:text-green-accent transition-colors">
+                {f.title}
+              </h3>
+              <p className="font-jakarta text-sm text-green-dark/55 leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>

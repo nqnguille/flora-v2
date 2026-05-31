@@ -1,87 +1,77 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Scale, ClipboardList, Building2 } from "lucide-react";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 const stats = [
-  { icon: Users,        value: "50+",       label: "Socios activos" },
-  { icon: Scale,        value: "Ley 27.350",label: "Marco legal" },
-  { icon: ClipboardList,value: "REPROCANN", label: "Registro oficial" },
-  { icon: Building2,    value: "Asoc. Civil",label: "Neuquén" },
-];
-
-const items = [
-  "Ley 27.350",
-  "REPROCANN activo",
-  "Asociación Civil inscripta",
-  "Envío legal por Andreani",
+  { value: "50+",       label: "Socios activos" },
+  { value: "Ley 27350", label: "Marco legal" },
+  { value: "REPROCANN", label: "Registro oficial" },
+  { value: "Neuquén",   label: "Asoc. Civil inscripta" },
 ];
 
 export function Trust() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
-    <section id="aval" className="py-28 px-5">
-      <div className="max-w-6xl mx-auto">
+    <section id="aval" className="bg-green-dark py-24 px-6 md:px-10">
+      <div className="max-w-7xl mx-auto" ref={ref}>
+
+        {/* Impact statement */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="border-b border-white/10 pb-16 mb-16"
         >
-          <span className="section-tag text-flora-accent mb-4 block">Respaldo</span>
-          <h2 className="font-garamond font-bold text-white text-5xl sm:text-6xl mb-4">
+          <h2 className="title-section text-cream max-w-3xl">
             Todo documentado.
             <br />
-            <em className="text-flora-accent">Todo verificable.</em>
+            <em className="text-green-accent">Todo verificable.</em>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-10">
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.value}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass rounded-2xl p-5 text-center"
-            >
-              <s.icon size={20} className="text-white/20 mx-auto mb-3" />
-              <p className="font-garamond font-bold text-white text-lg mb-0.5">{s.value}</p>
-              <p className="font-jakarta text-white/35 text-xs">{s.label}</p>
-            </motion.div>
-          ))}
-        </div>
+        {/* Stats + texto */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="glass rounded-3xl p-8 md:p-10 flex flex-col md:flex-row gap-8 items-start"
-        >
-          <div className="flex-1">
-            <span className="section-tag text-flora-accent mb-3 block">Marco legal</span>
-            <h3 className="font-garamond font-bold text-white text-3xl mb-4">
-              No te pedimos que confíes.
-              <br />
-              Te mostramos los documentos.
-            </h3>
-            <p className="font-jakarta text-white/45 text-sm leading-relaxed max-w-md">
-              La Ley 27.350 habilita a clubes de cultivo a producir cannabis medicinal
-              para sus socios. REPROCANN registra a la organización y a cada socio
-              individualmente. Flora opera en ese marco desde el primer día.
-            </p>
-          </div>
-          <div className="flex flex-col gap-2.5 md:min-w-52">
-            {items.map((item) => (
-              <div key={item} className="flex items-center gap-2.5 glass rounded-xl px-4 py-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-flora-accent flex-shrink-0" />
-                <span className="font-jakarta text-white/65 text-sm">{item}</span>
-              </div>
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 gap-px bg-white/10">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.value}
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+                className="bg-green-dark p-8"
+              >
+                <p className="font-garamond font-bold text-cream text-3xl mb-1">{s.value}</p>
+                <p className="font-jakarta text-white/35 text-xs">{s.label}</p>
+              </motion.div>
             ))}
           </div>
-        </motion.div>
+
+          {/* Texto legal */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <span className="section-tag text-green-accent mb-5 block">Marco legal</span>
+            <p className="font-jakarta text-white/55 text-base leading-relaxed mb-8">
+              La Ley 27.350 habilita a clubes de cultivo a producir cannabis medicinal para sus socios. El REPROCANN del Ministerio de Salud registra a la organización y a cada socio individualmente. Flora opera dentro de ese marco desde el primer día, con toda la documentación disponible para quien la quiera ver.
+            </p>
+            <div className="space-y-3">
+              {["Ley 27.350","REPROCANN activo","Asociación Civil inscripta","Envío legal por Andreani"].map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <span className="text-green-accent text-lg leading-none">✦</span>
+                  <span className="font-jakarta text-white/60 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
