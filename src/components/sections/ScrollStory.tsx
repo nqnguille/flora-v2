@@ -14,14 +14,19 @@ const lines = [
   { text: "Bienvenido a Flora.",     dim: false, accent: true  },
 ];
 
+// Las líneas empiezan después del 10% del scroll
+// → nunca hay contenido visible al cargar la página, solo el scroll cue
+const ENTRY = 0.10;
+
 function Line({ line, i, total, progress }: {
   line: (typeof lines)[number];
   i: number;
   total: number;
   progress: MotionValue<number>;
 }) {
-  const start   = i / total;
-  const end     = (i + 1) / total;
+  const range = 1 - ENTRY;
+  const start   = ENTRY + (i / total) * range;
+  const end     = ENTRY + ((i + 1) / total) * range;
   const fadeIn  = start + (end - start) * 0.3;
   const fadeOut = start + (end - start) * 0.82;
 
