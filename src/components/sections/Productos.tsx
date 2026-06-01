@@ -193,17 +193,19 @@ export function Productos() {
           })}
         </motion.div>
 
-        {/* Contenido por tab */}
+        {/* Contenido por tab — UN solo hijo con key cambiante para que AnimatePresence funcione */}
         <AnimatePresence mode="wait">
+          <motion.div
+            key={activo}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.28 }}
+          >
 
           {/* ── FLORES ── */}
           {activo === "flores" && (
-            <motion.div key="flores"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
+            <div>
               <p className="font-redhat text-sm text-white/45 mb-8 max-w-lg leading-relaxed">
                 Flor seca de cultivo propio. Cada lote incluye perfil completo de cannabinoides y terpenos. Plan mensual, sin contratos.
               </p>
@@ -239,17 +241,12 @@ export function Productos() {
               <p className="font-redhat text-xs text-white/20 mt-6 text-center">
                 Sin contratos ni permanencia mínima. Podés cambiar de plan cuando quieras.
               </p>
-            </motion.div>
+            </div>
           )}
 
           {/* ── ACEITES ── */}
           {activo === "aceites" && (
-            <motion.div key="aceites"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
+            <div>
               <p className="font-redhat text-sm text-white/45 mb-10 max-w-lg leading-relaxed">
                 Extractos sublinguales de producción propia. Tres formulaciones con distintas relaciones CBD:THC. Cada una pensada para una etapa o necesidad específica del tratamiento.
               </p>
@@ -299,17 +296,12 @@ export function Productos() {
               <p className="font-redhat text-xs text-white/20 mt-6 text-center">
                 Concentraciones y disponibilidad por consulta. El equipo médico orienta la elección.
               </p>
-            </motion.div>
+            </div>
           )}
 
           {/* ── CREMA ── */}
           {activo === "cremas" && (
-            <motion.div key="cremas"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3 }}
-            >
+            <div>
               <p className="font-redhat text-sm text-white/45 mb-10 max-w-lg leading-relaxed">
                 Formulación tópica antiinflamatoria de uso externo. Una sola fórmula, dos presentaciones. Para dolor localizado, articulaciones y recuperación muscular.
               </p>
@@ -363,9 +355,10 @@ export function Productos() {
               <p className="font-redhat text-xs text-white/20 mt-6">
                 Uso externo. No requiere REPROCANN. Disponibilidad por consulta.
               </p>
-            </motion.div>
+            </div>
           )}
 
+          </motion.div>
         </AnimatePresence>
       </div>
     </section>
