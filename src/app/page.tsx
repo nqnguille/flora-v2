@@ -1,8 +1,11 @@
 import { ScrollStory }      from "@/components/sections/ScrollStory";
 import { Hero }             from "@/components/sections/Hero";
+import { Perfiles }         from "@/components/sections/Perfiles";
 import { Features }         from "@/components/sections/Features";
+import { Productos }        from "@/components/sections/Productos";
 import { Memberships }      from "@/components/sections/Memberships";
 import { HowItWorks }       from "@/components/sections/HowItWorks";
+import { Testimonios }      from "@/components/sections/Testimonios";
 import { Trust }            from "@/components/sections/Trust";
 import { ChatOnboarding }   from "@/components/ui/ChatOnboarding";
 import { BotanicalDivider } from "@/components/ui/BotanicalDivider";
@@ -13,10 +16,13 @@ export default function HomePage() {
       <ScrollStory />
       <Hero />
       <BotanicalDivider />
+      <Perfiles />
       <Features />
+      <Productos />
       <Memberships />
       <BotanicalDivider flip />
       <HowItWorks />
+      <Testimonios />
       <Trust />
       <ChatOnboarding />
     </>
