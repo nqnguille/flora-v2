@@ -12,6 +12,7 @@ const config: Config = {
     "text-cream", "text-green-dark", "text-green-mid", "text-green-accent",
     "border-cream", "border-green-dark", "border-green-accent",
     // Tipografía
+    "font-noodle", "font-redhat", "font-display",
     "font-garamond", "font-jakarta",
     // Clases custom
     "title-brutal", "title-impact", "title-section", "section-tag",
@@ -26,9 +27,13 @@ const config: Config = {
         "green-accent":"#71CE6A",
       },
       fontFamily: {
-        garamond: ['"EB Garamond"', "Georgia", "serif"],
-        jakarta:  ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
-        sans:     ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+        noodle:   ['"Big Noodle Titling"', '"Red Hat Display"', "sans-serif"],
+        redhat:   ['"Red Hat Text"', "system-ui", "sans-serif"],
+        display:  ['"Red Hat Display"', "system-ui", "sans-serif"],
+        // aliases para compatibilidad con clases existentes
+        garamond: ['"Big Noodle Titling"', '"Red Hat Display"', "sans-serif"],
+        jakarta:  ['"Red Hat Text"', "system-ui", "sans-serif"],
+        sans:     ['"Red Hat Text"', "system-ui", "sans-serif"],
       },
       keyframes: {
         "fade-up": {
