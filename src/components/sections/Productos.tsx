@@ -9,103 +9,79 @@ import { waLink } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 type CatKey = "flores" | "aceites" | "cremas";
-
-const CATEGORIAS: Record<CatKey, {
-  label: string;
-  desc: string;
-  detalle: string;
-  planes: { name: string; cantidad: string; unidad: string; features: string[]; waText: string }[];
-}> = {
-  flores: {
-    label: "Flores",
-    desc: "Flor seca de cultivo propio. Perfil completo de cannabinoides y terpenos por lote.",
-    detalle: "Disponibilidad según ciclo de cultivo. Distintas variedades por temporada.",
-    planes: [
-      {
-        name: "Small", cantidad: "10", unidad: "g / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote"],
-        waText: "Hola, me interesa el plan Small de flores en Flora 🌿",
-      },
-      {
-        name: "Medium", cantidad: "20", unidad: "g / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote","Selección de variedad"],
-        waText: "Hola, me interesa el plan Medium de flores en Flora 🌿",
-      },
-      {
-        name: "Large", cantidad: "30", unidad: "g / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote","Selección de variedad","Seguimiento médico incluido"],
-        waText: "Hola, me interesa el plan Large de flores en Flora 🌿",
-      },
-      {
-        name: "Extra Large", cantidad: "40", unidad: "g / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote","Selección de variedad","Seguimiento médico prioritario"],
-        waText: "Hola, me interesa el plan Extra Large de flores en Flora 🌿",
-      },
-    ],
-  },
-  aceites: {
-    label: "Aceites",
-    desc: "Extractos sublinguales en distintas concentraciones de CBD y THC. Absorción rápida, dosificación precisa.",
-    detalle: "Concentraciones disponibles según indicación médica. Consultar variedad.",
-    planes: [
-      {
-        name: "Small", cantidad: "30", unidad: "ml / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Etiquetado con concentración exacta"],
-        waText: "Hola, me interesa el plan Small de aceites en Flora 🌿",
-      },
-      {
-        name: "Medium", cantidad: "60", unidad: "ml / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Etiquetado con concentración exacta","Selección de concentración"],
-        waText: "Hola, me interesa el plan Medium de aceites en Flora 🌿",
-      },
-      {
-        name: "Large", cantidad: "90", unidad: "ml / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Etiquetado con concentración exacta","Selección de concentración","Seguimiento médico incluido"],
-        waText: "Hola, me interesa el plan Large de aceites en Flora 🌿",
-      },
-      {
-        name: "Extra Large", cantidad: "120", unidad: "ml / mes",
-        features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Etiquetado con concentración exacta","Selección de concentración","Seguimiento médico prioritario"],
-        waText: "Hola, me interesa el plan Extra Large de aceites en Flora 🌿",
-      },
-    ],
-  },
-  cremas: {
-    label: "Cremas",
-    desc: "Formulaciones tópicas para dolor localizado, inflamación muscular o articular. Sin efecto sistémico.",
-    detalle: "Para uso externo. No requiere REPROCANN. Consultar disponibilidad.",
-    planes: [
-      {
-        name: "Small", cantidad: "1", unidad: "tubo / mes",
-        features: ["Evaluación inicial sin cargo","Entrega en todo el país","Formulación antiinflamatoria","Uso externo sin restricción"],
-        waText: "Hola, me interesa el plan Small de cremas en Flora 🌿",
-      },
-      {
-        name: "Medium", cantidad: "2", unidad: "tubos / mes",
-        features: ["Evaluación inicial sin cargo","Entrega en todo el país","Formulación antiinflamatoria","Uso externo sin restricción","Selección de fórmula"],
-        waText: "Hola, me interesa el plan Medium de cremas en Flora 🌿",
-      },
-      {
-        name: "Large", cantidad: "3", unidad: "tubos / mes",
-        features: ["Evaluación inicial sin cargo","Entrega en todo el país","Formulación antiinflamatoria","Uso externo sin restricción","Selección de fórmula","Seguimiento médico incluido"],
-        waText: "Hola, me interesa el plan Large de cremas en Flora 🌿",
-      },
-      {
-        name: "Extra Large", cantidad: "4", unidad: "tubos / mes",
-        features: ["Evaluación inicial sin cargo","Entrega en todo el país","Formulación antiinflamatoria","Uso externo sin restricción","Selección de fórmula","Seguimiento médico prioritario"],
-        waText: "Hola, me interesa el plan Extra Large de cremas en Flora 🌿",
-      },
-    ],
-  },
-};
-
 const KEYS: CatKey[] = ["flores", "aceites", "cremas"];
+const LABELS: Record<CatKey, string> = { flores: "Flores", aceites: "Aceites", cremas: "Crema" };
 
+/* ── Flores — membresías ─────────────────────────────── */
+const PLANES = [
+  {
+    name: "Small", cantidad: "10", unidad: "g / mes",
+    features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote"],
+    waText: "Hola, me interesa el plan Small de flores en Flora 🌿",
+  },
+  {
+    name: "Medium", cantidad: "20", unidad: "g / mes",
+    features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote","Selección de variedad"],
+    waText: "Hola, me interesa el plan Medium de flores en Flora 🌿",
+  },
+  {
+    name: "Large", cantidad: "30", unidad: "g / mes",
+    features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote","Selección de variedad","Seguimiento médico incluido"],
+    waText: "Hola, me interesa el plan Large de flores en Flora 🌿",
+  },
+  {
+    name: "Extra Large", cantidad: "40", unidad: "g / mes",
+    features: ["Evaluación inicial sin cargo","Gestión REPROCANN incluida","Entrega en todo el país","Perfil de cannabinoides del lote","Selección de variedad","Seguimiento médico prioritario"],
+    waText: "Hola, me interesa el plan Extra Large de flores en Flora 🌿",
+  },
+];
+
+/* ── Aceites — Q1 Q2 Q3 ──────────────────────────────── */
+const ACEITES = [
+  {
+    codigo: "Q1",
+    subtitulo: "Entrada al tratamiento",
+    desc: "Concentración baja, ideal para quienes empiezan. Suave, predecible y fácil de dosificar. El primer paso con respaldo médico.",
+    usos: ["Inicio de tratamiento", "Ansiedad leve", "Bienestar general"],
+    waText: "Hola, me interesa el aceite Q1 de Flora 🌿",
+  },
+  {
+    codigo: "Q2",
+    subtitulo: "El equilibrado",
+    desc: "Fórmula balanceada para uso continuo. Acompaña el día y la noche. Elegido por quienes ya tienen su tratamiento calibrado.",
+    usos: ["Uso diurno y nocturno", "Dolor moderado", "Insomnio"],
+    waText: "Hola, me interesa el aceite Q2 de Flora 🌿",
+  },
+  {
+    codigo: "Q3",
+    subtitulo: "Alta concentración",
+    desc: "Para tratamientos establecidos y condiciones complejas. Máxima potencia, formulación precisa. Indicado con acompañamiento médico.",
+    usos: ["Dolor crónico", "Condiciones complejas", "Uso nocturno intensivo"],
+    waText: "Hola, me interesa el aceite Q3 de Flora 🌿",
+  },
+];
+
+/* ── Crema — 2 presentaciones ───────────────────────── */
+const CREMAS = [
+  {
+    presentacion: "50 cc",
+    subtitulo: "Presentación personal",
+    desc: "Para uso localizado y tratamientos puntuales. Fácil de llevar, ideal para probar la fórmula.",
+    waText: "Hola, me interesa la crema 50cc de Flora 🌿",
+  },
+  {
+    presentacion: "100 cc",
+    subtitulo: "Presentación completa",
+    desc: "Para uso continuo y zonas de mayor extensión. La opción elegida por quienes ya incorporaron la crema a su rutina.",
+    waText: "Hola, me interesa la crema 100cc de Flora 🌿",
+  },
+];
+
+/* ── Componente ──────────────────────────────────────── */
 export function Productos() {
   const [activo, setActivo] = useState<CatKey>("flores");
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const cat = CATEGORIAS[activo];
 
   return (
     <section id="membresias" className="section-dark py-24 px-6 md:px-10">
@@ -119,9 +95,9 @@ export function Productos() {
             transition={{ duration: 0.7 }}
             className="title-section text-cream"
           >
-            Adaptable
+            Elegí lo
             <br />
-            <em className="text-green-accent">a tus hábitos.</em>
+            <em className="text-green-accent">que necesitás.</em>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -129,113 +105,207 @@ export function Productos() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="font-redhat text-sm text-white/40 max-w-xs leading-relaxed"
           >
-            Sin contratos ni permanencia mínima. Evaluación médica inicial sin cargo en todos los planes.
+            Flores como membresía mensual. Aceites y crema disponibles por consulta directa.
           </motion.p>
         </div>
 
-        {/* Selector triple */}
+        {/* Selector */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex gap-2 mb-10"
+          className="flex gap-2 mb-12"
         >
           {KEYS.map((key) => (
             <button
               key={key}
               onClick={() => setActivo(key)}
               className={cn(
-                "font-redhat font-semibold text-sm px-6 py-3 rounded-full transition-all duration-250",
+                "font-redhat font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-200",
                 activo === key
                   ? "bg-green-accent text-green-dark"
-                  : "border border-white/15 text-white/50 hover:border-white/35 hover:text-white/80"
+                  : "border border-white/15 text-white/45 hover:border-white/35 hover:text-white/75"
               )}
             >
-              {CATEGORIAS[key].label}
+              {LABELS[key]}
             </button>
           ))}
         </motion.div>
 
-        {/* Descripción del producto seleccionado */}
+        {/* Contenido por tab */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activo + "-desc"}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.3 }}
-            className="mb-10"
-          >
-            <p className="font-redhat text-white/55 text-sm max-w-xl leading-relaxed">
-              {cat.desc}
-              <span className="text-white/30"> — {cat.detalle}</span>
-            </p>
-          </motion.div>
-        </AnimatePresence>
 
-        {/* 4 planes */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activo + "-planes"}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-          >
-            {cat.planes.map((p) => (
-              <div
-                key={p.name}
-                className="border border-white/10 rounded-2xl p-7 flex flex-col hover:border-green-accent/40 hover:bg-white/4 transition-all duration-300 group"
-              >
-                {/* Nombre + cantidad */}
-                <div className="mb-6">
-                  <p className="section-tag text-green-accent mb-2">{p.name}</p>
-                  <div className="flex items-end gap-1.5 leading-none">
-                    <span
-                      className="font-noodle text-cream"
-                      style={{ fontSize: "clamp(2.8rem, 5.5vw, 4rem)" }}
-                    >
-                      {p.cantidad}
-                    </span>
-                    <span className="font-redhat text-white/35 text-sm mb-1">{p.unidad}</span>
+          {/* ── FLORES ── */}
+          {activo === "flores" && (
+            <motion.div key="flores"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="font-redhat text-sm text-white/45 mb-8 max-w-lg leading-relaxed">
+                Flor seca de cultivo propio. Cada lote incluye perfil completo de cannabinoides y terpenos. Plan mensual, sin contratos.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {PLANES.map((p) => (
+                  <div key={p.name}
+                    className="border border-white/10 rounded-2xl p-7 flex flex-col hover:border-green-accent/40 hover:bg-white/4 transition-all duration-300 group">
+                    <div className="mb-6">
+                      <p className="section-tag text-green-accent mb-2">{p.name}</p>
+                      <div className="flex items-end gap-1.5 leading-none">
+                        <span className="font-noodle text-cream" style={{ fontSize: "clamp(2.8rem,5.5vw,4rem)" }}>
+                          {p.cantidad}
+                        </span>
+                        <span className="font-redhat text-white/35 text-sm mb-1">{p.unidad}</span>
+                      </div>
+                    </div>
+                    <div className="h-px bg-white/8 mb-5" />
+                    <ul className="flex-1 space-y-2 mb-7">
+                      {p.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2">
+                          <span className="text-green-accent text-xs leading-none mt-1 flex-shrink-0">✦</span>
+                          <span className="font-redhat text-xs text-white/50 leading-relaxed">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href={waLink(p.waText)} target="_blank" rel="noopener noreferrer"
+                      className="block text-center font-redhat font-semibold text-xs py-3 rounded-full bg-green-accent/10 text-green-accent border border-green-accent/20 group-hover:bg-green-accent group-hover:text-green-dark group-hover:border-green-accent transition-all duration-200">
+                      Quiero este plan →
+                    </Link>
                   </div>
-                </div>
-
-                <div className="h-px bg-white/8 mb-5" />
-
-                {/* Features */}
-                <ul className="flex-1 space-y-2 mb-7">
-                  {p.features.map((feat) => (
-                    <li key={feat} className="flex items-start gap-2">
-                      <span className="text-green-accent text-xs leading-none mt-1 flex-shrink-0">✦</span>
-                      <span className="font-redhat text-xs text-white/50 leading-relaxed">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <Link
-                  href={waLink(p.waText)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-center font-redhat font-semibold text-xs py-3 rounded-full transition-all duration-200 bg-green-accent/10 text-green-accent border border-green-accent/20 group-hover:bg-green-accent group-hover:text-green-dark group-hover:border-green-accent"
-                >
-                  Quiero este plan →
-                </Link>
+                ))}
               </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+              <p className="font-redhat text-xs text-white/20 mt-6 text-center">
+                Sin contratos ni permanencia mínima. Podés cambiar de plan cuando quieras.
+              </p>
+            </motion.div>
+          )}
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="font-redhat text-xs text-white/20 mt-8 text-center"
-        >
-          Precio consultado por WhatsApp. Sin precios en la web porque el acceso es como socio, no como cliente.
-        </motion.p>
+          {/* ── ACEITES ── */}
+          {activo === "aceites" && (
+            <motion.div key="aceites"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="font-redhat text-sm text-white/45 mb-10 max-w-lg leading-relaxed">
+                Extractos sublinguales de producción propia. Tres formulaciones con distintas relaciones CBD:THC. Cada una pensada para una etapa o necesidad específica del tratamiento.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {ACEITES.map((a, i) => (
+                  <motion.div key={a.codigo}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    className="border border-white/10 rounded-2xl p-8 flex flex-col hover:border-green-accent/35 transition-colors duration-300 group"
+                  >
+                    {/* Código grande */}
+                    <div className="mb-6">
+                      <p className="section-tag text-white/25 mb-3">Aceite medicinal</p>
+                      <h3 className="font-noodle text-cream leading-none mb-1"
+                        style={{ fontSize: "clamp(4rem, 8vw, 5.5rem)" }}>
+                        {a.codigo}
+                      </h3>
+                      <p className="font-redhat text-green-accent text-xs font-semibold tracking-wide">
+                        {a.subtitulo}
+                      </p>
+                    </div>
+
+                    <div className="h-px bg-white/8 mb-6" />
+
+                    <p className="font-redhat text-sm text-white/55 leading-relaxed flex-1 mb-6">
+                      {a.desc}
+                    </p>
+
+                    {/* Usos */}
+                    <div className="flex flex-wrap gap-1.5 mb-7">
+                      {a.usos.map((u) => (
+                        <span key={u}
+                          className="font-redhat text-xs text-white/35 border border-white/10 px-3 py-1 rounded-full">
+                          {u}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link href={waLink(a.waText)} target="_blank" rel="noopener noreferrer"
+                      className="block text-center font-redhat font-semibold text-xs py-3 rounded-full bg-green-accent/10 text-green-accent border border-green-accent/20 group-hover:bg-green-accent group-hover:text-green-dark group-hover:border-green-accent transition-all duration-200">
+                      Consultar {a.codigo} →
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+              <p className="font-redhat text-xs text-white/20 mt-6 text-center">
+                Concentraciones y disponibilidad por consulta. El equipo médico orienta la elección.
+              </p>
+            </motion.div>
+          )}
+
+          {/* ── CREMA ── */}
+          {activo === "cremas" && (
+            <motion.div key="cremas"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="font-redhat text-sm text-white/45 mb-10 max-w-lg leading-relaxed">
+                Formulación tópica antiinflamatoria de uso externo. Una sola fórmula, dos presentaciones. Para dolor localizado, articulaciones y recuperación muscular.
+              </p>
+
+              {/* Nombre del producto — protagonismo */}
+              <div className="mb-10">
+                <h3 className="font-noodle text-cream leading-none"
+                  style={{ fontSize: "clamp(4rem, 10vw, 7rem)" }}>
+                  Crema Flora
+                </h3>
+                <p className="font-redhat text-green-accent text-sm font-semibold mt-2 tracking-wide">
+                  Fórmula tópica medicinal
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl">
+                {CREMAS.map((c, i) => (
+                  <motion.div key={c.presentacion}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="border border-white/10 rounded-2xl p-8 flex flex-col hover:border-green-accent/35 transition-colors duration-300 group"
+                  >
+                    <div className="mb-5">
+                      <p className="section-tag text-white/25 mb-3">Presentación</p>
+                      <div className="flex items-end gap-2 leading-none mb-1">
+                        <span className="font-noodle text-cream"
+                          style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)" }}>
+                          {c.presentacion}
+                        </span>
+                      </div>
+                      <p className="font-redhat text-green-accent text-xs font-semibold tracking-wide mt-1">
+                        {c.subtitulo}
+                      </p>
+                    </div>
+
+                    <div className="h-px bg-white/8 mb-5" />
+
+                    <p className="font-redhat text-sm text-white/55 leading-relaxed flex-1 mb-7">
+                      {c.desc}
+                    </p>
+
+                    <Link href={waLink(c.waText)} target="_blank" rel="noopener noreferrer"
+                      className="block text-center font-redhat font-semibold text-xs py-3 rounded-full bg-green-accent/10 text-green-accent border border-green-accent/20 group-hover:bg-green-accent group-hover:text-green-dark group-hover:border-green-accent transition-all duration-200">
+                      Consultar {c.presentacion} →
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              <p className="font-redhat text-xs text-white/20 mt-6">
+                Uso externo. No requiere REPROCANN. Disponibilidad por consulta.
+              </p>
+            </motion.div>
+          )}
+
+        </AnimatePresence>
       </div>
     </section>
   );
