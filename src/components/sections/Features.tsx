@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { BotanicalLeaf } from "@/components/ui/BotanicalLeaf";
 
 const features = [
   { n: "01", title: "Acceso legal",         desc: "Asociación Civil inscripta. Operamos bajo Ley 27.350 con REPROCANN activo. Cada socio tiene su registro oficial." },
@@ -18,8 +19,18 @@ export function Features() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="que-es" className="section-cream py-24 px-6 md:px-10">
-      <div className="max-w-7xl mx-auto" ref={ref}>
+    <section id="que-es" className="section-cream botanical-texture py-24 px-6 md:px-10 relative overflow-hidden">
+      {/* Hoja grande decorativa */}
+      <motion.div
+        initial={{ opacity: 0, x: 80 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="absolute -right-16 top-8 pointer-events-none hidden md:block"
+      >
+        <BotanicalLeaf className="w-72 h-auto" color="#2D4239" opacity={0.12} />
+      </motion.div>
+      <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-green-dark/15">

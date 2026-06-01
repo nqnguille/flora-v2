@@ -15,7 +15,7 @@ export function HowItWorks() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="como-funciona" className="section-cream py-24 px-6 md:px-10">
+    <section id="como-funciona" className="section-cream botanical-texture py-24 px-6 md:px-10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto" ref={ref}>
 
         <div className="border-b border-green-dark/15 pb-10 mb-0">
