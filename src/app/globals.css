@@ -4,10 +4,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Breathing animations ─────────────────────────────── */
+@keyframes breathe-dark {
+  0%, 100% { background-color: #2D4239; }
+  50%       { background-color: #3d5a4c; }
+}
+
+@keyframes breathe-cream {
+  0%, 100% { background-color: #F7F6EB; }
+  50%       { background-color: #E5E3D3; }
+}
+
+/* ── Base ─────────────────────────────────────────────── */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   body {
     background-color: #F7F6EB;
+    animation: breathe-cream 7s ease-in-out infinite;
     color: #2D4239;
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -20,8 +33,19 @@
   }
 }
 
-/* Clases globales que Tailwind no puede generar solo */
+/* ── Components ───────────────────────────────────────── */
 @layer components {
+  /* Secciones que respiran */
+  .section-dark {
+    background-color: #2D4239;
+    animation: breathe-dark 7s ease-in-out infinite;
+  }
+  .section-cream {
+    background-color: #F7F6EB;
+    animation: breathe-cream 7s ease-in-out infinite;
+  }
+
+  /* Tipografía */
   .font-garamond { font-family: "EB Garamond", Georgia, serif; }
   .font-jakarta  { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
 

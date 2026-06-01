@@ -81,7 +81,7 @@ export function ChatOnboarding() {
   const showInput    = started && stepIdx >= FLOW.length && status !== "success";
 
   return (
-    <section id="contacto" className="bg-cream py-24 px-6 md:px-10">
+    <section id="contacto" className="section-cream py-24 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

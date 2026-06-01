@@ -16,7 +16,7 @@ export function Trust() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="aval" className="bg-green-dark py-24 px-6 md:px-10">
+    <section id="aval" className="section-dark py-24 px-6 md:px-10">
       <div className="max-w-7xl mx-auto" ref={ref}>
 
         {/* Impact statement */}

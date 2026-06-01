@@ -6,7 +6,7 @@ import { WA_LINK } from "@/lib/constants";
 
 export function Hero() {
   return (
-    <section className="min-h-screen bg-cream flex flex-col justify-between pt-14 overflow-hidden">
+    <section className="min-h-screen section-cream flex flex-col justify-between pt-14 overflow-hidden">
 
       {/* Tagline superior */}
       <motion.div

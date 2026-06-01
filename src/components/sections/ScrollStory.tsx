@@ -63,7 +63,7 @@ export function ScrollStory() {
   });
 
   return (
-    <section ref={ref} className="relative bg-green-dark" style={{ height: `${lines.length * 100}vh` }}>
+    <section ref={ref} className="relative section-dark" style={{ height: `${lines.length * 100}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden pt-14">
         {lines.map((line, i) => (
           <Line key={i} line={line} i={i} total={lines.length} progress={scrollYProgress} />

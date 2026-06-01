@@ -18,7 +18,7 @@ export function Features() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="que-es" className="bg-cream py-24 px-6 md:px-10">
+    <section id="que-es" className="section-cream py-24 px-6 md:px-10">
       <div className="max-w-7xl mx-auto" ref={ref}>
 
         {/* Header */}
