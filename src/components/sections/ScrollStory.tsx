@@ -41,16 +41,37 @@ function Line({ line, i, total, progress }: {
 }
 
 function ScrollCue({ progress }: { progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, [0, 0.08], [1, 0]);
+  const opacity = useTransform(progress, [0, 0.1], [1, 0]);
   return (
-    <motion.div style={{ opacity }}
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none">
-      <span className="section-tag text-cream/25">scrolleá</span>
-      <motion.div
-        className="w-px h-6 bg-gradient-to-b from-cream/30 to-transparent"
-        animate={{ scaleY: [1, 0.3, 1] }}
-        transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-      />
+    <motion.div
+      style={{ opacity }}
+      className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 pointer-events-none select-none"
+    >
+      {/* Mouse icon */}
+      <div className="relative w-6 h-9 rounded-full border-2 border-cream/40 flex items-start justify-center pt-1.5">
+        <motion.div
+          className="w-1 h-2 rounded-full bg-green-accent"
+          animate={{ y: [0, 8, 0], opacity: [1, 0, 1] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+        />
+      </div>
+      <span className="section-tag text-cream/35 tracking-widest">deslizá</span>
+      {/* Chevrons animados */}
+      <div className="flex flex-col items-center gap-0.5">
+        {[0, 1, 2].map((i) => (
+          <motion.svg
+            key={i}
+            width="14" height="8" viewBox="0 0 14 8"
+            className="fill-none stroke-cream/30"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            animate={{ opacity: [0.2, 0.8, 0.2], y: [0, 2, 0] }}
+            transition={{ repeat: Infinity, duration: 1.4, delay: i * 0.2, ease: "easeInOut" }}
+          >
+            <polyline points="1,1 7,7 13,1" />
+          </motion.svg>
+        ))}
+      </div>
     </motion.div>
   );
 }

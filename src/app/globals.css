@@ -14,11 +14,6 @@
 }
 
 /* ── Breathing animations ─────────────────────────────── */
-@keyframes breathe-dark {
-  0%, 100% { background-color: #2D4239; }
-  50%       { background-color: #3d5a4c; }
-}
-
 @keyframes breathe-cream {
   0%, 100% { background-color: #F7F6EB; }
   50%       { background-color: #E5E3D3; }
@@ -28,8 +23,8 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   body {
-    background-color: #F7F6EB;
-    animation: breathe-cream 7s ease-in-out infinite;
+    background-color: #0c1510;
+    /* Las secciones crema tienen su propio fondo opaco */
     color: #2D4239;
     font-family: "Red Hat Text", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -45,10 +40,10 @@
 
 /* ── Components ───────────────────────────────────────── */
 @layer components {
-  /* Secciones que respiran */
+  /* Secciones oscuras — semi-transparentes para que el gradiente rotante respire */
   .section-dark {
-    background-color: #2D4239;
-    animation: breathe-dark 7s ease-in-out infinite;
+    background-color: rgba(12, 21, 16, 0.62);
+    backdrop-filter: none;
   }
   .section-cream {
     background-color: #F7F6EB;

@@ -117,6 +117,26 @@ export function Hero() {
           ))}
         </motion.div>
       </div>
+      {/* Scroll cue Hero */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 0.8 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none z-30"
+      >
+        <motion.div
+          className="flex flex-col items-center gap-0.5"
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+        >
+          {[0, 1].map((i) => (
+            <svg key={i} width="16" height="9" viewBox="0 0 16 9"
+              className="fill-none stroke-cream/25" strokeWidth="1.5" strokeLinecap="round">
+              <polyline points="1,1 8,8 15,1" />
+            </svg>
+          ))}
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
