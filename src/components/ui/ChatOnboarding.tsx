@@ -24,7 +24,10 @@ interface Msg { from: "bot" | "user"; text: string }
 export function ChatOnboarding() {
   const [started, setStarted]     = useState(false);
   const [stepIdx, setStepIdx]     = useState(0);
-  const [messages, setMessages]   = useState<Msg[]>([]);
+  const [messages, setMessages]   = useState<Msg[]>([
+    // Primer mensaje visible desde el inicio — sin requerir click
+    { from: "bot", text: FLOW[0].text },
+  ]);
   const [answers, setAnswers]     = useState<Record<string, string>>({});
   const [name, setName]           = useState("");
   const [contact, setContact]     = useState("");
@@ -36,11 +39,9 @@ export function ChatOnboarding() {
   }, [messages]);
 
   function start() {
+    if (started) return;
     setStarted(true);
-    setTimeout(() => {
-      setMessages([{ from: "bot", text: FLOW[0].text }]);
-      setTimeout(() => setStepIdx(1), 400);
-    }, 200);
+    setTimeout(() => setStepIdx(1), 200);
   }
 
   function choose(option: string) {
@@ -147,27 +148,19 @@ export function ChatOnboarding() {
             </div>
 
             {/* Messages */}
-            <div className="min-h-[260px] max-h-[360px] overflow-y-auto px-5 py-5 space-y-3 flex flex-col bg-cream/50">
-              {!started && (
-                <div className="m-auto text-center">
-                  <p className="font-jakarta text-xs text-green-dark/40 mb-5">Asociarse en Flora lleva menos de 5 minutos.</p>
-                  <button onClick={start}
-                    className="font-jakarta text-sm font-bold bg-green-dark text-cream px-6 py-2.5 rounded-full hover:bg-green-mid transition-colors">
-                    Empezar →
-                  </button>
-                </div>
-              )}
-
+            <div className="min-h-[240px] max-h-[340px] overflow-y-auto px-5 py-5 space-y-3 flex flex-col">
               <AnimatePresence initial={false}>
                 {messages.map((msg, i) => (
                   <motion.div key={i}
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.25 }}
+                    transition={{ duration: 0.28 }}
                     className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
                   >
-                    <div className={`max-w-[80%] px-4 py-2.5 font-jakarta text-sm leading-relaxed ${
-                      msg.from === "bot" ? "chat-bubble-bot text-green-dark/80" : "chat-bubble-user text-green-dark font-medium"
+                    <div className={`max-w-[80%] px-4 py-2.5 font-redhat text-sm leading-relaxed ${
+                      msg.from === "bot"
+                        ? "chat-bubble-bot text-green-dark/80"
+                        : "chat-bubble-user text-green-dark font-semibold"
                     }`}>
                       {msg.text}
                     </div>
@@ -177,23 +170,34 @@ export function ChatOnboarding() {
               <div ref={bottomRef} />
             </div>
 
-            {/* Choices */}
+            {/* Choices o botón de inicio */}
             <AnimatePresence>
-              {showChoices && currentStep?.type === "choice" && (
+              {!started ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="border-t border-green-dark/10 px-5 py-4"
+                >
+                  <button onClick={start}
+                    className="w-full font-redhat font-bold text-sm bg-green-dark text-cream py-3 rounded-full hover:bg-green-mid transition-colors">
+                    Empezar →
+                  </button>
+                </motion.div>
+              ) : showChoices && currentStep?.type === "choice" ? (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="border-t border-green-dark/10 px-5 py-4 flex flex-wrap gap-2 bg-cream/30"
+                  className="border-t border-green-dark/10 px-5 py-4 flex flex-wrap gap-2"
                 >
                   {currentStep.options.map(opt => (
                     <button key={opt} onClick={() => choose(opt)}
-                      className="font-jakarta text-xs font-medium border border-green-dark/20 text-green-dark px-4 py-2 rounded-full hover:bg-green-dark hover:text-cream transition-all">
+                      className="font-redhat text-xs font-medium border border-green-dark/20 text-green-dark px-4 py-2 rounded-full hover:bg-green-dark hover:text-cream transition-all">
                       {opt}
                     </button>
                   ))}
                 </motion.div>
-              )}
+              ) : null}
             </AnimatePresence>
 
             {/* Input */}

@@ -5,6 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import { MEMBERSHIPS, waLink } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 export function Memberships() {
   const ref = useRef(null);
@@ -30,41 +31,41 @@ export function Memberships() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-jakarta text-sm text-white/40 max-w-xs leading-relaxed"
+            className="font-redhat text-sm text-white/45 max-w-xs leading-relaxed"
           >
-            Cuatro planes según tu consumo mensual. Evaluación inicial sin cargo para todos los socios. Precio consultado por WhatsApp.
+            Cuatro planes según tu consumo mensual. Evaluación médica inicial sin cargo en todos.
           </motion.p>
         </div>
 
-        {/* 4 columnas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/8">
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {MEMBERSHIPS.map((m, i) => (
             <motion.div
               key={m.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: i * 0.09 }}
-              className="bg-green-dark p-8 flex flex-col group hover:bg-green-mid transition-colors duration-300"
+              transition={{ duration: 0.55, delay: i * 0.1 }}
+              className="border border-white/10 rounded-2xl p-7 flex flex-col hover:border-green-accent/40 hover:bg-white/4 transition-all duration-300 group"
             >
               {/* Nombre + gramos */}
-              <div className="mb-8">
-                <p className="section-tag text-green-accent mb-3">{m.name}</p>
-                <span className="font-garamond font-bold text-cream leading-none"
-                  style={{ fontSize: "clamp(3rem,6vw,4.5rem)" }}>
-                  {m.grams}
-                  <span className="text-2xl font-normal text-white/30 ml-1">g</span>
-                </span>
-                <p className="font-jakarta text-xs text-white/35 mt-2">por mes</p>
+              <div className="mb-6">
+                <p className="section-tag text-green-accent mb-2">{m.name}</p>
+                <div className="flex items-end gap-1.5 leading-none">
+                  <span className="font-noodle text-cream" style={{ fontSize: "clamp(2.8rem,5.5vw,4rem)" }}>
+                    {m.grams}
+                  </span>
+                  <span className="font-redhat text-white/35 text-base mb-1">g / mes</span>
+                </div>
               </div>
 
-              <div className="h-px bg-white/10 mb-6" />
+              <div className="h-px bg-white/8 mb-5" />
 
               {/* Features */}
-              <ul className="flex-1 space-y-2.5 mb-8">
+              <ul className="flex-1 space-y-2 mb-7">
                 {m.features.map((feat) => (
                   <li key={feat} className="flex items-start gap-2">
-                    <span className="text-green-accent text-sm leading-none mt-0.5">✦</span>
-                    <span className="font-jakarta text-xs text-white/45 leading-relaxed">{feat}</span>
+                    <span className="text-green-accent text-xs leading-none mt-1 flex-shrink-0">✦</span>
+                    <span className="font-redhat text-xs text-white/50 leading-relaxed">{feat}</span>
                   </li>
                 ))}
               </ul>
@@ -74,22 +75,25 @@ export function Memberships() {
                 href={waLink(m.waText)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-center font-jakarta font-bold text-xs uppercase tracking-wider border border-white/15 text-white/60 py-3 rounded-full hover:bg-green-accent hover:text-green-dark hover:border-green-accent transition-all duration-200"
+                className={cn(
+                  "block text-center font-redhat font-semibold text-xs py-3 rounded-full transition-all duration-200",
+                  "bg-green-accent/10 text-green-accent border border-green-accent/20",
+                  "group-hover:bg-green-accent group-hover:text-green-dark group-hover:border-green-accent"
+                )}
               >
-                Consultar precio
+                Quiero esta membresía →
               </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* Nota al pie */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="font-jakarta text-xs text-white/25 mt-8 text-center"
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="font-redhat text-xs text-white/25 mt-8 text-center"
         >
-          Podés cambiar de plan en cualquier momento. Sin contratos ni permanencia mínima.
+          Sin contratos ni permanencia mínima. Podés cambiar de plan cuando quieras.
         </motion.p>
       </div>
     </section>
