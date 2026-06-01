@@ -28,7 +28,7 @@ export function Features() {
         transition={{ duration: 1.4, ease: "easeOut" }}
         className="absolute -right-12 top-12 pointer-events-none hidden lg:block"
       >
-        <BotanicalLeaf className="w-64 h-auto" color="#2D4239" opacity={0.1} />
+        <BotanicalLeaf className="w-64 h-auto" color="#0B5845" opacity={0.1} />
       </motion.div>
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>

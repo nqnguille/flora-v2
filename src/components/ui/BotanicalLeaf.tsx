@@ -1,6 +1,6 @@
 export function BotanicalLeaf({
   className = "",
-  color = "#71CE6A",
+  color = "#9B7BBF",
   opacity = 1,
 }: {
   className?: string;

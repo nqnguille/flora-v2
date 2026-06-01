@@ -27,7 +27,7 @@ export function Trust() {
     <section id="aval" className="section-dark py-24 px-6 md:px-10 relative overflow-hidden">
       {/* Hoja decorativa esquina izquierda */}
       <div className="absolute -left-16 bottom-8 pointer-events-none hidden lg:block opacity-20 rotate-12">
-        <BotanicalLeaf className="w-56 h-auto" color="#71CE6A" opacity={1} />
+        <BotanicalLeaf className="w-56 h-auto" color="#9B7BBF" opacity={1} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>

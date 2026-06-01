@@ -37,7 +37,7 @@ export function Hero() {
         >
           <BotanicalLeaf
             className="w-[340px] md:w-[420px] lg:w-[500px] h-auto translate-x-1/4"
-            color="#71CE6A"
+            color="#9B7BBF"
             opacity={0.55}
           />
         </motion.div>

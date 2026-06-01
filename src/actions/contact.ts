@@ -19,9 +19,9 @@ export async function submitContact(data: ContactData) {
       replyTo: data.email || undefined,
       subject: `Nueva consulta de ${data.nombre} — Flora`,
       html: `
-        <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:32px;background:#0c1510;color:#F7F6EB;">
+        <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:32px;background:#0A0514;color:#F7F6EB;">
           <div style="margin-bottom:24px;">
-            <span style="color:#71CE6A;font-size:22px;font-weight:700;">Flora</span>
+            <span style="color:#9B7BBF;font-size:22px;font-weight:700;">Flora</span>
             <p style="color:rgba(255,255,255,0.4);font-size:13px;margin:4px 0 0;">Nueva consulta desde el sitio web</p>
           </div>
           <table style="width:100%;border-collapse:collapse;font-size:14px;">

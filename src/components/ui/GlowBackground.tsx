@@ -5,7 +5,7 @@ export function GlowBackground() {
       <div
         className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full opacity-[0.18] animate-blob-1"
         style={{
-          background: "radial-gradient(circle, #2D4239 0%, transparent 70%)",
+          background: "radial-gradient(circle, #0B5845 0%, transparent 70%)",
           filter: "blur(80px)",
         }}
       />
@@ -13,7 +13,7 @@ export function GlowBackground() {
       <div
         className="absolute -top-20 right-0 w-[500px] h-[500px] rounded-full opacity-[0.12] animate-blob-2"
         style={{
-          background: "radial-gradient(circle, #71CE6A 0%, transparent 70%)",
+          background: "radial-gradient(circle, #9B7BBF 0%, transparent 70%)",
           filter: "blur(100px)",
         }}
       />
@@ -21,7 +21,7 @@ export function GlowBackground() {
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full opacity-[0.10] animate-blob-3"
         style={{
-          background: "radial-gradient(circle, #2D4239 0%, transparent 70%)",
+          background: "radial-gradient(circle, #0B5845 0%, transparent 70%)",
           filter: "blur(120px)",
         }}
       />

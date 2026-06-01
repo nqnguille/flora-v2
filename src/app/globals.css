@@ -4,7 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Big Noodle Titling (self-hosted) ─────────────────── */
+/* ─────────────────────────────────────────────────────────
+   DESIGN TOKENS — Paleta oficial Flora
+   ─────────────────────────────────────────────────────── */
+:root {
+  --color-brand-primary:  #381F56;  /* violeta profundo */
+  --color-brand-accent:   #9B7BBF;  /* lila              */
+  --color-brand-dark:     #0B5845;  /* verde oscuro      */
+  --color-brand-sage:     #3B967E;  /* verde claro       */
+  --color-cream:          #F7F6EB;  /* fondo claro       */
+  --color-base:           #0A0514;  /* base oscura       */
+}
+
+/* ─── Big Noodle Titling (self-hosted) ─────────────────── */
 @font-face {
   font-family: "Big Noodle Titling";
   src: url("/fonts/big_noodle_titling.ttf") format("truetype");
@@ -13,23 +25,24 @@
   font-display: swap;
 }
 
-/* ── Breathing animations ─────────────────────────────── */
+/* ─── Breathing cream ──────────────────────────────────── */
 @keyframes breathe-cream {
   0%, 100% { background-color: #F7F6EB; }
-  50%       { background-color: #E5E3D3; }
+  50%       { background-color: #EAE8DA; }
 }
 
-/* ── Base ─────────────────────────────────────────────── */
+/* ─── Base ─────────────────────────────────────────────── */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
+
   body {
-    background-color: #0c1510;
-    /* Las secciones crema tienen su propio fondo opaco */
-    color: #2D4239;
+    background-color: var(--color-base);
+    color: #F7F6EB;
     font-family: "Red Hat Text", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: "Big Noodle Titling", "Red Hat Display", sans-serif;
     line-height: 1.0;
@@ -38,35 +51,27 @@
   }
 }
 
-/* ── Components ───────────────────────────────────────── */
+/* ─── Components ───────────────────────────────────────── */
 @layer components {
-  /* Secciones oscuras — semi-transparentes para que el gradiente rotante respire */
+
+  /* Secciones oscuras — semi-transparentes → aurora respira */
   .section-dark {
-    background-color: rgba(12, 21, 16, 0.62);
-    backdrop-filter: none;
+    background-color: rgba(56, 31, 86, 0.55);   /* violet overlay */
   }
+
+  /* Secciones claras — opacas, cubren la aurora */
   .section-cream {
     background-color: #F7F6EB;
     animation: breathe-cream 7s ease-in-out infinite;
+    color: var(--color-brand-dark);
   }
 
   /* Tipografía */
-  .font-noodle {
-    font-family: "Big Noodle Titling", "Red Hat Display", sans-serif;
-    font-weight: normal;
-    letter-spacing: 0.01em;
-  }
-  .font-redhat {
-    font-family: "Red Hat Text", system-ui, sans-serif;
-  }
-  /* mantener aliases anteriores mapeados a las nuevas fuentes */
-  .font-garamond {
-    font-family: "Big Noodle Titling", "Red Hat Display", sans-serif;
-    font-weight: normal;
-  }
-  .font-jakarta {
-    font-family: "Red Hat Text", system-ui, sans-serif;
-  }
+  .font-noodle  { font-family: "Big Noodle Titling", "Red Hat Display", sans-serif; font-weight: normal; }
+  .font-redhat  { font-family: "Red Hat Text", system-ui, sans-serif; }
+  .font-display { font-family: "Red Hat Display", system-ui, sans-serif; }
+  .font-garamond { font-family: "Big Noodle Titling", "Red Hat Display", sans-serif; font-weight: normal; }
+  .font-jakarta  { font-family: "Red Hat Text", system-ui, sans-serif; }
 
   .section-tag {
     font-family: "Red Hat Text", system-ui, sans-serif;
@@ -100,21 +105,21 @@
     letter-spacing: 0.02em;
   }
 
-  /* Textura botánica — patrón de hoja en crema */
+  /* Textura botánica — patrón de hoja sutil en crema */
   .botanical-texture {
-    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.07' fill='none' stroke='%232D4239' stroke-width='0.8'%3E%3Cpath d='M60 15 C60 15 35 35 35 60 C35 80 47 92 60 95 C73 92 85 80 85 60 C85 35 60 15 60 15Z'/%3E%3Cline x1='60' y1='15' x2='60' y2='95'/%3E%3Cpath d='M60 40 C60 40 45 36 38 30'/%3E%3Cpath d='M60 40 C60 40 75 36 82 30'/%3E%3Cpath d='M60 58 C60 58 43 52 36 44'/%3E%3Cpath d='M60 58 C60 58 77 52 84 44'/%3E%3Cpath d='M60 74 C60 74 46 70 40 64'/%3E%3Cpath d='M60 74 C60 74 74 70 80 64'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.06' fill='none' stroke='%230B5845' stroke-width='0.8'%3E%3Cpath d='M60 15 C60 15 35 35 35 60 C35 80 47 92 60 95 C73 92 85 80 85 60 C85 35 60 15 60 15Z'/%3E%3Cline x1='60' y1='15' x2='60' y2='95'/%3E%3Cpath d='M60 40 C60 40 45 36 38 30'/%3E%3Cpath d='M60 40 C60 40 75 36 82 30'/%3E%3Cpath d='M60 58 C60 58 43 52 36 44'/%3E%3Cpath d='M60 58 C60 58 77 52 84 44'/%3E%3Cpath d='M60 74 C60 74 46 70 40 64'/%3E%3Cpath d='M60 74 C60 74 74 70 80 64'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 120px 120px;
   }
 
+  /* Chat bubbles */
   .chat-bubble-bot {
-    background: rgba(45, 66, 57, 0.07);
-    border: 1px solid rgba(45, 66, 57, 0.12);
+    background: rgba(11, 88, 69, 0.08);
+    border: 1px solid rgba(11, 88, 69, 0.15);
     border-radius: 4px 20px 20px 20px;
   }
-
   .chat-bubble-user {
-    background: rgba(113, 206, 106, 0.15);
-    border: 1px solid rgba(113, 206, 106, 0.3);
+    background: rgba(155, 123, 191, 0.15);
+    border: 1px solid rgba(155, 123, 191, 0.3);
     border-radius: 20px 4px 20px 20px;
   }
 }
