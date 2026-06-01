@@ -5,12 +5,30 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { waLink } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 type CatKey = "flores" | "aceites" | "cremas";
 const KEYS: CatKey[] = ["flores", "aceites", "cremas"];
-const LABELS: Record<CatKey, string> = { flores: "Flores", aceites: "Aceites", cremas: "Crema" };
+
+const TABS: Record<CatKey, { label: string; sub: string; photo: string }> = {
+  flores: {
+    label: "Flores",
+    sub: "Membresía mensual",
+    photo: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=85",
+  },
+  aceites: {
+    label: "Aceites",
+    sub: "Q1 · Q2 · Q3",
+    photo: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=900&q=85",
+  },
+  cremas: {
+    label: "Crema",
+    sub: "50 cc · 100 cc",
+    photo: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=900&q=85",
+  },
+};
 
 /* ── Flores — membresías ─────────────────────────────── */
 const PLANES = [
@@ -109,27 +127,70 @@ export function Productos() {
           </motion.p>
         </div>
 
-        {/* Selector */}
+        {/* Selector fotográfico full-width */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex gap-2 mb-12"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="grid grid-cols-3 gap-2 mb-12 rounded-2xl overflow-hidden"
         >
-          {KEYS.map((key) => (
-            <button
-              key={key}
-              onClick={() => setActivo(key)}
-              className={cn(
-                "font-redhat font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-200",
-                activo === key
-                  ? "bg-green-accent text-green-dark"
-                  : "border border-white/15 text-white/45 hover:border-white/35 hover:text-white/75"
-              )}
-            >
-              {LABELS[key]}
-            </button>
-          ))}
+          {KEYS.map((key) => {
+            const tab = TABS[key];
+            const isActive = activo === key;
+            return (
+              <button
+                key={key}
+                onClick={() => setActivo(key)}
+                className={cn(
+                  "relative h-44 md:h-56 overflow-hidden group transition-all duration-400 focus:outline-none",
+                  isActive ? "flex-[1.3]" : "flex-1"
+                )}
+              >
+                {/* Foto */}
+                <Image
+                  src={tab.photo}
+                  alt={tab.label}
+                  fill
+                  className={cn(
+                    "object-cover transition-all duration-700",
+                    isActive ? "scale-105 brightness-75" : "scale-100 brightness-50 group-hover:brightness-60"
+                  )}
+                  sizes="(max-width: 768px) 33vw, 25vw"
+                />
+
+                {/* Overlay verde activo */}
+                <div className={cn(
+                  "absolute inset-0 transition-opacity duration-400",
+                  isActive
+                    ? "bg-gradient-to-t from-green-dark/80 via-green-dark/20 to-transparent opacity-100"
+                    : "bg-green-dark/40 opacity-100 group-hover:opacity-60"
+                )} />
+
+                {/* Borde inferior activo */}
+                <div className={cn(
+                  "absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300",
+                  isActive ? "bg-green-accent" : "bg-transparent"
+                )} />
+
+                {/* Label */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 text-left">
+                  <p className={cn(
+                    "font-noodle leading-none transition-colors duration-300 mb-1",
+                    isActive ? "text-cream" : "text-cream/60 group-hover:text-cream/85",
+                    "text-3xl md:text-4xl"
+                  )}>
+                    {tab.label}
+                  </p>
+                  <p className={cn(
+                    "font-redhat text-xs transition-all duration-300",
+                    isActive ? "text-green-accent opacity-100" : "text-white/30 opacity-0 group-hover:opacity-100"
+                  )}>
+                    {tab.sub}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
         </motion.div>
 
         {/* Contenido por tab */}
